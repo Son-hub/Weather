@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 import com.naver.dto.WeatherDto;
 
 public class NvWeather {
-	public static ArrayList<WeatherDto> movie() throws IOException {
+	public static ArrayList<WeatherDto> weather() throws IOException {
 		// Dto 를 전달 하는 리스트
 		ArrayList<WeatherDto> list = new ArrayList<WeatherDto>();
 		String url = "https://www.accuweather.com/ko/kr/busan/222888/hourly-weather-forecast/222888";
@@ -20,7 +20,7 @@ public class NvWeather {
 		Document doc = Jsoup.connect(url).get();
 		
 		// CSS 선택자를 사용해 링크 추출하기
-		Elements menus = doc.select("div.hourly-card-nfl-header");
+		Elements menus = doc.select("accordion-item hourly-card-nfl hour non-ad");
 		
 		// 제목 링크 가져오기
 		// 반복문 적용하기
@@ -41,14 +41,15 @@ public class NvWeather {
 			// 날씨 온도
 			String temp = nextDoc.select("body > div > div.two-column-page-content > div.page-column-1 > div.content-module > div.hourly-wrapper.content-module > div:nth-child(1) > div.accordion-item-header-container > div > div.temp.metric").text();
 			// 실제 온도
-//			Elements realfeel = nextDoc.select("body > div > div.two-column-page-content > div.page-column-1 > div.content-module > div.hourly-wrapper.content-module > div:nth-child(1) > div.accordion-item-header-container > div > span.real-feel");
+			String realfeel = nextDoc.select("body > div > div.two-column-page-content > div.page-column-1 > div.content-module > div.hourly-wrapper.content-module > div:nth-child(1) > div.accordion-item-header-container > div > span.real-feel").text();
+			// 습도
+			String hum = nextDoc.select("body > div > div.two-column-page-content > div.page-column-1 > div.content-module > div.hourly-wrapper.content-module > div:nth-child(1) > div.accordion-item-header-container > div > span.real-feel").text();
 
 			// 크롤링 해온 데이터들을 Dto에 담는다.
 			WeatherDto dto = new WeatherDto();
-			dto.setTemp(temp);
-//			dto.setGam(gam);
-//			dto.setBae(bae);
-//			dto.setImg(content);
+			dto.setAccu_temp(temp);
+			dto.setAccu_realfeel(realfeel);
+			dto.setAccu_hum(hum);
 			// Dto 담은 데이터를 list 에 담는다
 			list.add(dto);
 		}

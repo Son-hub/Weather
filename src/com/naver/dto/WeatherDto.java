@@ -1,32 +1,26 @@
 package com.naver.dto;
 
 public class WeatherDto {
-	private String temp;
-	private int realfeel;
-	private int precip;
-	private int hum;
-	public String getTemp() {
-		return temp;
+	private String accu_temp;
+	private String accu_realfeel;
+	private String accu_hum;
+	public String getAccu_temp() {
+		return accu_temp;
 	}
-	public void setTemp(String temp) {
-		this.temp = temp;
+	public void setAccu_temp(String accu_temp) {
+		this.accu_temp = accu_temp;
 	}
-	public int getRealfeel() {
-		return realfeel;
+	public String getAccu_realfeel() {
+		return accu_realfeel;
 	}
-	public void setRealfeel(int realfeel) {
-		this.realfeel = realfeel;
+	public void setAccu_realfeel(String accu_realfeel) {
+		this.accu_realfeel = accu_realfeel;
 	}
-	public int getPrecip() {
-		return precip;
+	public String getAccu_hum() {
+		return accu_hum;
 	}
-	public void setPrecip(int precip) {
-		this.precip = precip;
+	public void setAccu_hum(String accu_hum) {
+		this.accu_hum = accu_hum;
 	}
-	public int getHum() {
-		return hum;
-	}
-	public void setHum(int hum) {
-		this.hum = hum;
-	}
+	
 }

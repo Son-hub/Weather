@@ -19,15 +19,14 @@ public class WeatherDaoImpl implements WeatherDao{
 		try {
 			conn = DB.conn();
 			StringBuffer sql = new StringBuffer();
-			sql.append("INSERT INTO weather_Accu(temp, realfeel, precip, hum) ");
-			sql.append("SELECT ?, ?, ?, ? FROM DUAL WHERE NOT EXISTS ");
-			sql.append("(SELECT temp, realfeel, precip, hum FROM weather_Accu WHERE temp = ?) ");
+			sql.append("INSERT INTO weather_Accu(accu_temp, accu_realfeel, accu_hum) ");
+			sql.append("SELECT ?, ?, ? FROM DUAL WHERE NOT EXISTS ");
+			sql.append("(SELECT accu_temp, accu_realfeel, accu_hum FROM weather_Accu WHERE accu_temp = ?) ");
 			pstmt = conn.prepareStatement(sql.toString());
 			
-			pstmt.setString(1, dto.getTemp());
-			pstmt.setInt(2, dto.getRealfeel());
-			pstmt.setInt(3, dto.getPrecip());
-			pstmt.setInt(4, dto.getHum());
+			pstmt.setString(1, dto.getAccu_temp());
+			pstmt.setString(2, dto.getAccu_realfeel());
+			pstmt.setString(3, dto.getAccu_hum());
 			
 			int count = pstmt.executeUpdate();
 			if (count == 0) {
@@ -66,12 +65,11 @@ public class WeatherDaoImpl implements WeatherDao{
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getInt("temp"));
+				System.out.println(rs.getString("temp"));
 				WeatherDto dto = new WeatherDto();
-				dto.setTemp(rs.getString("temp"));
-				dto.setRealfeel(rs.getInt("realfeel"));
-				dto.setPrecip(rs.getInt("precip"));
-				dto.setHum(rs.getInt("hum"));
+				dto.setAccu_temp(rs.getString("temp"));
+				dto.setAccu_realfeel(rs.getString("realfeel"));
+				dto.setAccu_hum(rs.getString("hum"));
 				list.add(dto);
 			}
 
