@@ -22,9 +22,8 @@ public class TodayServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("list", "ArrayList<WeatherDto>");
-		RequestDispatcher dispatch = request.getRequestDispatcher("todayweather.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("today.jsp");
 		dispatch.forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "top.jsp" %>
 <%@ page import = "com.naver.dao.WeatherDao" %>
-<%
-	ArrayList<WeatherDto> dto = ArrayList<WeatherDto>;
-%>
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 </body>
 </html>
